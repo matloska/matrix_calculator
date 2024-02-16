@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Matrices calculations</title>
+    </head>
+    <body>
+        <h3>Matrices calculations</h3>
+        <p>Define the size of the matrix</p>
+        <form action="" method="POST">
+            <h4>Matrix A</h4>
+                <label for="rows_a">Rows:</label>
+                <input name="rows_a" type="text" value="{{ rows_a }}" />
+                <label for="cols_a">Columns:</label>
+                <input name="cols_a" type="text" value="{{ cols_a }}"/>
+                <input type="submit" value="Confirm" />
+            <h4>Matrix B</h4>
+                <label for="rows_b"">Rows:</label>
+                <input name="rows_b" type="text" value="{{ rows_b }}" />
+                <label for="cols_b">Columns:</label>
+                <input name="cols_b" type="text" value="{{ cols_b }}"/>
+                <input type="submit" value="Confirm" />
+
+            <hr/>
+            {# Table for matrix calculations#}
+            <table id="Matrix_A">
+                {% for r in range(rows_a) %}
+                <tr>
+                    {% for c in range(cols_a) %}
+                    <td>
+                        <input name="Ar{{r}}c{{c}}" type="text" value="0" size="8"/>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </body>
+</html>
