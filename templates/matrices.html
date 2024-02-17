@@ -13,26 +13,73 @@
                 <label for="cols_a">Columns:</label>
                 <input name="cols_a" type="text" value="{{ cols_a }}"/>
                 <input type="submit" value="Confirm" />
+
+                {# Table A for matrix calculations#}
+                <table id="Matrix_A">
+                    {% for r in range(rows_a) %}
+                    <tr>
+                        {% for c in range(cols_a) %}
+                        <td>
+                            <input name="Ar{{r}}c{{c}}" type="text" value="0" size="8"/>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                
             <h4>Matrix B</h4>
                 <label for="rows_b"">Rows:</label>
                 <input name="rows_b" type="text" value="{{ rows_b }}" />
                 <label for="cols_b">Columns:</label>
                 <input name="cols_b" type="text" value="{{ cols_b }}"/>
-                <input type="submit" value="Confirm" />
+                <input type="submit" value="Confirm"/>
 
-            <hr/>
-            {# Table for matrix calculations#}
-            <table id="Matrix_A">
-                {% for r in range(rows_a) %}
-                <tr>
-                    {% for c in range(cols_a) %}
-                    <td>
-                        <input name="Ar{{r}}c{{c}}" type="text" value="0" size="8"/>
-                    </td>
+                {# Table B for matrix calculations#}
+                <table id="Matrix_B">
+                    {% for r in range(rows_b) %}
+                    <tr>
+                        {% for c in range(cols_b) %}
+                        <td>
+                            <input name="Br{{r}}c{{c}}" type="text" value="0" size="8"/>
+                        </td>
+                        {% endfor %}
+                    </tr>
                     {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
+                </table>
+    
+            <hr/>
+
+            <h3>Calculation type</h3>
+            <input name="calc_type" type="radio" id="calc_add" value="add" />
+            <label for="calc_add">Add</label>
+            <input name="calc_type" type="radio" id="calc_substract" value="substract" />
+            <label for="calc_substract">Substract</label>
+            <input name="calc_type" type="radio" id="calc_multiply" value="multiply" />
+            <label for="calc_multiply">Multiply</label>
+
+            <br/><br/>
+            <input type="submit" value="Calculate"/>
+
+            {% if has_result %}
+                <hr/>
+                <h3>Result</h3>
+
+                <table id="Result_matrix">
+                    {% for r in result %}
+                    <tr>
+                        {% for c in r %}
+                        <td>
+                            <input type="text" readonly="true" value="{{c}}" size="8"/>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            {% endif %}
+
+
         </form>
     </body>
 </html>

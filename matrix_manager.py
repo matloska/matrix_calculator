@@ -22,7 +22,20 @@ class MatrixManager():
 
         matrix_vals = [(re.findall(r'\d+',r[0]),r[1]) for r in data] #checks for numeric values in rNUMBERcNUMBER format
 
-        for m in matrix_vals:
-            base_matrix[int(m[0][0]), int(m[0][1])]= int(m[1])
+        new_matrix = np.copy(base_matrix)
 
-        return base_matrix
+        for m in matrix_vals:
+            new_matrix[int(m[0][0]), int(m[0][1])]= int(m[1])
+
+        return new_matrix
+    
+    def possible_operations(self, matrix_a: np.array, matrix_b: np.array):
+        operations = []
+        if matrix_a.shape == matrix_b.shape:
+            operations.append("add")
+            operations.append("substract")
+            
+        if matrix_a.shape[1] == matrix_b.shape[0]:
+            operations.append("multiply")
+
+        return operations

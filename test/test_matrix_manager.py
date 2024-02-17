@@ -32,3 +32,14 @@ class TestMatrixManager(unittest.TestCase):
                               [('Ar0c0', '1'),('Ar0c1', '2'), ('Ar1c0', '3'), ('Ar1c1', '4')])
         
         np.testing.assert_array_equal(changed,np.reshape(np.arange(1,5),[2,2]))
+
+    def test_possible_operations(self):
+        """Test for possible operations between two matrices
+        for 2x2 and 2x1 it should accept only multiplication"""
+
+        manager = MatrixManager()
+
+        matrix_a = np.array([[3,5],[2,3]])
+        matrix_b = np.array([[3],[2]])
+
+        assert manager.possible_operations(matrix_a,matrix_b) == ["multiply"]
